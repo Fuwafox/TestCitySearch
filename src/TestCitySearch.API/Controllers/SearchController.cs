@@ -1,6 +1,7 @@
 ﻿using DaData.Models.Suggestions.Responses;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
+using TestCitySearch.Models;
 
 namespace TestCitySearch.Controllers
 {
@@ -18,9 +19,9 @@ namespace TestCitySearch.Controllers
         }
 
         [HttpGet]
-        public AddressResponse Get(string? value)
+        public IEnumerable<IAddress> Get(string? value)
         {
-            return _controllerSearch.Search(value).Result;
+            return _controllerSearch.Search(value);
         }
     }
 }

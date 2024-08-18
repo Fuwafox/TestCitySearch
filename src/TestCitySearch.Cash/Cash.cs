@@ -8,7 +8,6 @@ namespace TestCitySearch.Cash
     {
         private readonly IMemoryCache _memoryCache;
         private readonly ILogger _logger;
-
         public Cash(ILogger logger, IMemoryCache memoryCache)
         {
              _logger = logger;
@@ -19,9 +18,11 @@ namespace TestCitySearch.Cash
             _memoryCache.Set(value, addresses);
         }
 
-        public IEnumerable<IAddress> SearchData(string? value)
+        public IEnumerable<AddressFull> SearchData(string? value)
         {
-            throw new NotImplementedException();
+            List<AddressFull> addresses = [];
+            _memoryCache.TryGetValue(value, out addresses);
+            return addresses;
         }
     }
 }

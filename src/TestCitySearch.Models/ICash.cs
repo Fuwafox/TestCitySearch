@@ -2,7 +2,7 @@
 {
     public interface ICash
     {
-        public IEnumerable<IAddress> SearchData(string? value);
+        public IEnumerable<AddressFull> SearchData(string? value);
         public void SaveData(IEnumerable<IAddress> addresses, string value);
     }
 }

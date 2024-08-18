@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace TestCitySearch.Models
@@ -16,7 +17,7 @@ namespace TestCitySearch.Models
         /// Идентификатор OpenStreetMap для Беларуси, Казахстана и Узбекистана.
         /// Для остальных стран — идентификатор объекта в базе GeoNames.
         /// </summary>
-        public Guid? Fias_id { get; set; }
+        public string? Fias_id { get; set; }
         /// <summary>
         /// Регион с типом
         /// </summary>
@@ -37,5 +38,8 @@ namespace TestCitySearch.Models
         /// Квартира
         /// </summary>
         public string? Flat { get; set; }
+
+        [JsonIgnore]
+        public string? City_fias_id { get; set; }
     }
 }
