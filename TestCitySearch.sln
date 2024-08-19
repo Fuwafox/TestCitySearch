@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCitySearch.API", "src\T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCitySearch.Core", "src\TestCitySearch.Core\TestCitySearch.Core.csproj", "{9FEB1E26-64C3-4FBA-99D2-2FF053F8B606}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCitySearch.Data", "src\TestCitySearch.Data\TestCitySearch.Data.csproj", "{68EC2615-E76C-4DC4-8876-EA1FC0166FB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCitySearch.Data.MariaDB.EF", "src\TestCitySearch.Data\TestCitySearch.Data.MariaDB.EF.csproj", "{68EC2615-E76C-4DC4-8876-EA1FC0166FB6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCitySearch.Models", "src\TestCitySearch.Models\TestCitySearch.Models.csproj", "{BECD7784-DA44-410B-B399-79F18AE1DAFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCitySearch.Cash", "src\TestCitySearch.Cash\TestCitySearch.Cash.csproj", "{E351DEC4-54F4-4CA1-B6FA-0BF9CBEC7CEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCitySearch.Cash", "src\TestCitySearch.Cash\TestCitySearch.Cash.csproj", "{E351DEC4-54F4-4CA1-B6FA-0BF9CBEC7CEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TestCitySearch.Models.Settigns
 {
-    public class Settings
+    public class SettingsCach
     {
-        public SettingsCach SettingsCach { get; set; }
-        public SetupData SetupData { get; set; }
+        public int TimeDelete { get; set; }
+        public int TimeSave { get; set; }
     }
 }

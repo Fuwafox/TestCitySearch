@@ -1,6 +1,6 @@
 ﻿namespace TestCitySearch.Models.Settigns
 {
-    public class DataBase
+    public class SetupData
     {
         public Type Type { get; set; }
     }

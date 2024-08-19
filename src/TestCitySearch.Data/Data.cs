@@ -1,10 +1,17 @@
-﻿using TestCitySearch.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using TestCitySearch.Models;
 
-namespace TestCitySearch.Data
+namespace TestCitySearch.Data.MariaDB
 {
     public class Data : IData
     {
-        public IEnumerable<IAddress> LoadCityAddress(Guid? fias_id)
+        private readonly DbContext _context;
+
+        public Data(DbContext context) 
+        {
+            _context = context;
+        }
+        public IEnumerable<IAddress> LoadCityAddress(IEnumerable<Guid?> fias_id)
         {
             throw new NotImplementedException();
         }

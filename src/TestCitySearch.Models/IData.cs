@@ -8,7 +8,7 @@ namespace TestCitySearch.Models
 {
     public interface IData
     {
-        public IEnumerable<IAddress> LoadCityAddress(Guid? fias_id);
+        public IEnumerable<IAddress> LoadCityAddress(IEnumerable<Guid?> fias_id);
         public void SaveCityAddress(IEnumerable<IAddress> cityAddress);
     }
 }

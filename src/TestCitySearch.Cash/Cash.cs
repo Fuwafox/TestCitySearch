@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using NLog;
 using TestCitySearch.Models;
+using TestCitySearch.Models.Settigns;
 
 namespace TestCitySearch.Cash
 {
@@ -8,13 +9,18 @@ namespace TestCitySearch.Cash
     {
         private readonly IMemoryCache _memoryCache;
         private readonly ILogger _logger;
-        public Cash(ILogger logger, IMemoryCache memoryCache)
+        private readonly SettingsCach _settingsCash;
+        public Cash(ILogger logger, IMemoryCache memoryCache, SettingsCach settingsCach)
         {
              _logger = logger;
             _memoryCache = memoryCache;
+            _settingsCash = settingsCach;
         }
         public void SaveData(IEnumerable<IAddress> addresses, string value)
         {
+            var cacheEntryOptions = new MemoryCacheEntryOptions()
+             .SetSlidingExpiration(TimeSpan.FromSeconds(_settingsCash.TimeSave))
+             .SetAbsoluteExpiration(TimeSpan.FromSeconds(_settingsCash.TimeDelete));
             _memoryCache.Set(value, addresses);
         }
 
