@@ -13,7 +13,7 @@ namespace TestCitySearch.API.Extension
                 case DbEnum.Type.MariaDB:
                     result.SetupData = configuration.GetSection("Settings").GetSection("SetupData").Get<MariaDBSetup>();
                     break;
-                defoult: throw new Exception($"Unsupported setup type {result.SetupData.Type}"); break;
+                default: throw new Exception($"Unsupported setup type {result.SetupData.Type}"); break;
 
             };
             return result;
