@@ -1,26 +1,28 @@
 ﻿using DaData.Models.Suggestions.Responses;
 using TestCitySearch.Models;
 using NLog;
+using DaData.Models;
+using DbModels = TestCitySearch.Models.DBModels;
 
 namespace TestCitySearch.Core
 {
-    class Adapter<T>: IAdapter<T> where T : class
+    class Adapter<T> : IAdapter<T> where T : class
     {
         private readonly ILogger _logger;
-        public Adapter(ILogger logger) 
+        public Adapter(ILogger logger)
         {
             _logger = logger;
         }
         public IEnumerable<AddressFull> ConvertAddress(T value)
         {
             List<AddressFull> result = new List<AddressFull>();
-            List<AddressCity> addressCity = [] ;
+            List<AddressCity> addressCity = [];
             try
             {
                 var response = value as AddressResponse;
                 foreach (var item in response.Suggestions)
                 {
-                    result.Add( new AddressFull 
+                    result.Add(new AddressFull
                     {
                         Fias_id = item.Data.FiasId,
                         City_with_type = item.Data.CityWithType,
@@ -32,7 +34,7 @@ namespace TestCitySearch.Core
                     });
                     if (item.Data.FiasId == item.Data.CityFiasId)
                     {
-                        addressCity.Add( new AddressCity 
+                        addressCity.Add(new AddressCity
                         {
                             Fias_id = item.Data.FiasId,
                             City_with_type = item.Data.CityWithType,
@@ -54,8 +56,65 @@ namespace TestCitySearch.Core
             }
             catch (Exception ex)
             {
-                _logger?.Error(ex,"Error conversion!");
+                _logger?.Error(ex, "Error conversion!");
                 throw;
+            }
+        }
+
+        public IEnumerable<AddressCity> ConvertAddressFromDBInProject(IEnumerable<DbModels.AddressCity> value)
+        {
+            List<AddressCity> result = new List<AddressCity>();
+            try
+            {
+                foreach (var item in value)
+                {
+                    result.Add(new AddressCity
+                    {
+                        Fias_id = item.Fias_Id.ToString(),
+                        City_with_type = item.City_with_type,
+                        Region_with_type = item.Region_with_type,
+                        Street_with_type = item.Street_with_type,
+                        House = item.House.ToString(),
+                        Flat = item.Flat,
+                        TimeZone = item.TimeZone,
+                        Geo_lat = item.Geo_lat,
+                        Geo_lon = item.Geo_lon,
+                    });
+
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger?.Error(ex, "Error conversion!");
+                throw;
+            }
+        }
+
+        public IEnumerable<DbModels.AddressCity> ConvertAddressInDB(IEnumerable<AddressCity> value)
+        {
+            try
+            {
+                foreach (var item in value)
+                {
+                        yield return new DbModels.AddressCity
+                    {
+                        Fias_Id = Guid.Parse(item.Fias_id),
+                        City_with_type = item.City_with_type,
+                        Region_with_type = item.Region_with_type,
+                        Street_with_type = item.Street_with_type is null ? String.Empty: item.Street_with_type,
+                        House = item.House is null ? 0 : Int32.Parse(item.House),
+                        Flat = item.Flat,
+                        TimeZone = item.TimeZone,
+                        Geo_lat = item.Geo_lat,
+                        Geo_lon = item.Geo_lon,
+                    };
+
+                }
+            }
+            finally
+            {
+                _logger?.Error("Error conversion!");
             }
         }
     }

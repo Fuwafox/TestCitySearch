@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TestCitySearch.Models.DBModels;
 
 namespace TestCitySearch.Models
 {
     public interface IData
     {
-        public IEnumerable<IAddress> LoadCityAddress(IEnumerable<Guid?> fias_id);
-        public void SaveCityAddress(IEnumerable<IAddress> cityAddress);
+        public IEnumerable<TestCitySearch.Models.DBModels.AddressCity> LoadCityAddress(IEnumerable<Guid?> fias_id);
+        public void SaveCityAddress(IEnumerable<TestCitySearch.Models.DBModels.AddressCity> cityAddress);
     }
 }

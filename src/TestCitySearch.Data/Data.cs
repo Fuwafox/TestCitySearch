@@ -1,24 +1,28 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NLog;
 using TestCitySearch.Models;
 
-namespace TestCitySearch.Data.MariaDB
+namespace TestCitySearch.Data.MariaDB.EF
 {
     public class Data : IData
     {
-        private readonly DbContext _context;
+        private readonly Context _context;
+        private readonly ILogger _logger;
 
-        public Data(DbContext context) 
+        public Data(Context context, ILogger logger) 
         {
             _context = context;
+            _logger = logger;
         }
-        public IEnumerable<IAddress> LoadCityAddress(IEnumerable<Guid?> fias_id)
+        public IEnumerable<TestCitySearch.Models.DBModels.AddressCity> LoadCityAddress(IEnumerable<Guid?> fias_id)
         {
-            throw new NotImplementedException();
+            return _context.AddressCitys.ToList();
         }
 
-        public void SaveCityAddress(IEnumerable<IAddress> cityAddress)
+        public void SaveCityAddress(IEnumerable<TestCitySearch.Models.DBModels.AddressCity> cityAddress)
         {
-            throw new NotImplementedException();
+            foreach(var item in cityAddress)
+            _context.AddressCitys.Add(item);
         }
     }
 }

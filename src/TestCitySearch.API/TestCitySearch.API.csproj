@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TestCitySearch.Cash\TestCitySearch.Cash.csproj" />
     <ProjectReference Include="..\TestCitySearch.Core\TestCitySearch.Core.csproj" />
+    <ProjectReference Include="..\TestCitySearch.Data\TestCitySearch.Data.MariaDB.EF.csproj" />
   </ItemGroup>
 
 </Project>

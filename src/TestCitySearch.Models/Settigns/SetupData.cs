@@ -1,7 +1,9 @@
-﻿namespace TestCitySearch.Models.Settigns
+﻿using DbEnum = TestCitySearch.Models.Enum;
+
+namespace TestCitySearch.Models.Settigns
 {
     public class SetupData
     {
-        public Type Type { get; set; }
+        public DbEnum.Type Type { get; set; }
     }
 }
