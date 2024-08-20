@@ -24,13 +24,15 @@ namespace ControllerSearch
                 var responseCash = _cash.SearchData(value);
                 if (responseCash is null || !responseCash.Any())
                 {
-                    var responseApi = SearchApi(value).Result;
+                    var responseApi = SearchApi(value).Result;            
                     if (responseApi != null)
                     {
                         var result = _adapter.ConvertAddress(responseApi).ToList<AddressFull>();
                         _cash.SaveData(result, value);
                         var res = _adapter.ConvertAddressInDB(result.DistinctBy(x => x.City).Select(x => x.City).Where(x => x is not null)).ToList();
-                        _data.SaveCityAddress(res);
+                        var resLoadDB = _data.LoadCityAddress(res.Select(x => x.Fias_Id));
+                        if (!resLoadDB.Any())
+                            _data.SaveCityAddress(res);
                         return result;
                     }
                 }
