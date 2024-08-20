@@ -1,5 +1,4 @@
-﻿using System.Data;
-using TestCitySearch.Models.Settigns;
+﻿using TestCitySearch.Models.Settigns;
 using DbEnum = TestCitySearch.Models.Enum;
 
 namespace TestCitySearch.API.Extension

@@ -2,6 +2,9 @@
 
 namespace TestCitySearch.Models
 {
+    /// <summary>
+    /// Мдель адреса для отправик ответа от API
+    /// </summary>
     public class AddressFull:IAddress
     {
         /// <summary>

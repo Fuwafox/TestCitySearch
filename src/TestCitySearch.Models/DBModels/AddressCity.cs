@@ -2,6 +2,10 @@
 
 namespace TestCitySearch.Models.DBModels
 {
+    /// <summary>
+    /// Класс содержащий данные по городу
+    /// Модель для работы с БД
+    /// </summary>
     public class AddressCity
     {
         [Key]

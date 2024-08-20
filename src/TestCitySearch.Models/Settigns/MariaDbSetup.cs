@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TestCitySearch.Models.Settigns
 {
+    /// <summary>
+    /// Настройки для подключения к базе данных
+    /// </summary>
     public class MariaDBSetup:SetupData
     {
         public string Host { set; get; }

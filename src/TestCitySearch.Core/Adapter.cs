@@ -1,11 +1,14 @@
 ﻿using DaData.Models.Suggestions.Responses;
-using TestCitySearch.Models;
 using NLog;
-using DaData.Models;
+using TestCitySearch.Models;
 using DbModels = TestCitySearch.Models.DBModels;
 
 namespace TestCitySearch.Core
 {
+    /// <summary>
+    /// Адаптер для преобразования моделей
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     class Adapter<T> : IAdapter<T> where T : class
     {
         private readonly ILogger _logger;
@@ -13,6 +16,12 @@ namespace TestCitySearch.Core
         {
             _logger = logger;
         }
+
+        /// <summary>
+        /// Преобразование модели из API во внутреннюю модель
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public IEnumerable<AddressFull> ConvertAddress(T value)
         {
             List<AddressFull> result = new List<AddressFull>();
@@ -61,6 +70,11 @@ namespace TestCitySearch.Core
             }
         }
 
+        /// <summary>
+        /// Преобразование данных из базы данных во внутреннюю модель
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public IEnumerable<AddressCity> ConvertAddressFromDBInProject(IEnumerable<DbModels.AddressCity> value)
         {
             List<AddressCity> result = new List<AddressCity>();
@@ -91,30 +105,33 @@ namespace TestCitySearch.Core
             }
         }
 
+        /// <summary>
+        /// Преобразование из внутренней модели в модель для базы данных
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public IEnumerable<DbModels.AddressCity> ConvertAddressInDB(IEnumerable<AddressCity> value)
         {
             try
             {
                 foreach (var item in value)
                 {
-                        yield return new DbModels.AddressCity
+                    yield return new DbModels.AddressCity
                     {
                         Fias_Id = Guid.Parse(item.Fias_id),
                         City_with_type = item.City_with_type,
                         Region_with_type = item.Region_with_type,
-                        Street_with_type = item.Street_with_type is null ? String.Empty: item.Street_with_type,
+                        Street_with_type = item.Street_with_type is null ? String.Empty : item.Street_with_type,
                         House = item.House is null ? 0 : Int32.Parse(item.House),
                         Flat = item.Flat,
                         TimeZone = item.TimeZone,
                         Geo_lat = item.Geo_lat,
                         Geo_lon = item.Geo_lon,
                     };
-
                 }
             }
             finally
-            {
-                _logger?.Error("Error conversion!");
+            { 
             }
         }
     }

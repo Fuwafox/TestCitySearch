@@ -1,5 +1,8 @@
 ﻿namespace TestCitySearch.Models
 {
+    /// <summary>
+    /// Модель данных о городе для работы внутри проекта
+    /// </summary>
     public class AddressCity : IAddress
     {
         public string? Fias_id { get; set; }

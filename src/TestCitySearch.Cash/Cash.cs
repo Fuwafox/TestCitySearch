@@ -5,6 +5,9 @@ using TestCitySearch.Models.Settigns;
 
 namespace TestCitySearch.Cash
 {
+    /// <summary>
+    /// Сохранение данных в кэш
+    /// </summary>
     public class Cash : ICash
     {
         private readonly IMemoryCache _memoryCache;

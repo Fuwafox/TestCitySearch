@@ -1,6 +1,4 @@
-﻿using DaData.Models.Suggestions.Responses;
-using Microsoft.AspNetCore.Mvc;
-using NLog;
+﻿using Microsoft.AspNetCore.Mvc;
 using TestCitySearch.Models;
 
 namespace TestCitySearch.Controllers

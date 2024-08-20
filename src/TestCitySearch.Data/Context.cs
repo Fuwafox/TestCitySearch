@@ -3,6 +3,9 @@ using TestCitySearch.Models.DBModels;
 
 namespace TestCitySearch.Data.MariaDB.EF
 {
+    /// <summary>
+    /// Подключение к базе данных и создание таблицы
+    /// </summary>
     public class Context : DbContext
     {
         public Context(DbContextOptions<Context> options)

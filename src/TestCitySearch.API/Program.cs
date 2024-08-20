@@ -27,7 +27,7 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddSingleton<NLog.ILogger>(_logger);
-    ApiClient _client = new("509d53f2e092253efde4546b72927b8e2d3f2cf4", "c95bcdadf9d43a8b34c539c2478f1c0fd706f80b");
+    ApiClient _client = new(_settings.SettingsClient.Token, _settings.SettingsClient.Key);
 
     MemoryCache _memoryCache = new(new MemoryCacheOptions());
     builder.Services.AddSingleton(_memoryCache);

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace TestCitySearch.Models.Settigns
 {
     /// <summary>
-    /// Настройки хранения данных в кэше
+    /// Настройки для API Client
     /// </summary>
-    public class SettingsCach
+    public class SettingsClient
     {
-        public int TimeDelete { get; set; }
-        public int TimeSave { get; set; }
+        public string? Token { get; set; }
+        public string? Key {  get; set; } 
     }
 }

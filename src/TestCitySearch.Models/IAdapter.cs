@@ -2,6 +2,10 @@
 
 namespace TestCitySearch.Models
 {
+    /// <summary>
+    /// Общая модель адаптера для преобразования данных
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IAdapter<T> where T : class
     {
         public IEnumerable<AddressFull> ConvertAddress(T value);

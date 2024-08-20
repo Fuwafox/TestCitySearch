@@ -2,13 +2,18 @@
 using DaData.Models;
 using DaData.Models.Suggestions.Responses;
 using NLog;
-using System.Linq;
 using TestCitySearch.Core;
 using TestCitySearch.Models;
-using TestCitySearch.Models.Settigns;
 
 namespace ControllerSearch
 {
+    /// <summary>
+    /// Ядро для управления поиском
+    /// </summary>
+    /// <param name="apiClient"></param>
+    /// <param name="logger"></param>
+    /// <param name="cash"></param>
+    /// <param name="data"></param>
     public class CoreSearch(ApiClient? apiClient, ILogger? logger, ICash cash, IData data)
     {
         private readonly ApiClient? _apiClient = apiClient;
@@ -24,7 +29,7 @@ namespace ControllerSearch
                 var responseCash = _cash.SearchData(value);
                 if (responseCash is null || !responseCash.Any())
                 {
-                    var responseApi = SearchApi(value).Result;            
+                    var responseApi = SearchApi(value).Result;
                     if (responseApi != null)
                     {
                         var result = _adapter.ConvertAddress(responseApi).ToList<AddressFull>();
@@ -54,7 +59,7 @@ namespace ControllerSearch
             }
             catch (Exception ex)
             {
-                _logger?.Error("Error request in DaData",ex);
+                _logger?.Error("Error request in DaData", ex);
                 throw;
             }
         }

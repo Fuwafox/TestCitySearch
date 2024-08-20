@@ -3,6 +3,9 @@ using TestCitySearch.Models;
 
 namespace TestCitySearch.Data.MariaDB.EF
 {
+    /// <summary>
+    /// Работа с базой данных
+    /// </summary>
     public class Data : IData
     {
         private readonly Context _context;
